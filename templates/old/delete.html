@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Assets Dashboard{% endblock %}
+
+{% load static %}
+
+{% block content %}
+
+
+<br><br>
+<!--
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card card-body">
+        
+    </div>
+  </div>
+</div> -->
+<div class="text-center">
+  <div class="card" style="width: 20rem;">
+    <div class="card text-dark bg-warning mb-3" >
+      <div class="card-header">Confirm</div>
+      <div class="card-body">
+        <p>
+          Are you sure you want to delete "{{item}}" ?
+        </p>
+      
+        <form action="{% url 'deleteAsset' item.id %}" method="POST">
+      
+          {% csrf_token %}
+          <button type="button" class="btn btn-warning"><a href="{% url 'table' %}" class="text-decoration-none text-white">Cancel</a></button>
+      
+          <button class="btn btn-danger"  type="submit" name="Confirm">Confirm</button>
+       </form>
+        </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

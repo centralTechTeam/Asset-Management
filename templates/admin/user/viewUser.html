@@ -1,0 +1,82 @@
+{% extends 'admin/base.html' %}
+
+
+{% block searchs %}
+<div class="navbar-nav align-items-center">
+  <form action="{% url 'accounts:view_users' %}" method="GET">
+      <div class="nav-item d-flex align-items-center">
+          <i class="bx bx-search fs-4 lh-0"></i>
+          <input
+              type="text"
+              name="q"
+              id="search-input"
+              class="form-control border-0 shadow-none"
+              placeholder="Search..."
+              aria-label="Search..."
+              value="{{ query }}"
+          />
+      </div>
+  </form>
+</div>
+{% endblock searchs %}
+
+{% block content %}
+<div class="container-xxl flex-grow-1 container-p-y">
+
+  <div class="alert alert-success messages">
+    {% for message in messages %}
+        <p {% if message.tags %} class="{{ message.tags }}"{% endif %}><strong>{{ message }}</strong></p>
+    {% endfor %}
+  </div>
+
+  <!-- Responsive Table -->
+  <div class="card">
+    <h2 class="fw-bold py-3 mb-4" style="text-align: center;">Users Data</h2>
+    <div class="table-responsive text-nowrap">
+      <table class="table">
+        <thead class="table-dark">
+          <tr class="text-nowrap">
+            <th class="text-white">#</th>
+            <th class="text-white"> Pic </th>
+            <th class="text-white"> Email </th>
+            <th class="text-white"> Username </th>
+            <th class="text-white"> Date Joined </th>
+            <th class="text-white"> Last Login </th>
+            <th class="text-white"> Is_Active </th>
+            <th class="text-white">Is Superuser</th>
+            <th class="text-white"> Group </th>
+            <th class="text-white"> Action </th>
+            <th class="text-white"> Action </th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for user in users %}
+            <tr>
+              <td class="py-1">{{user.id}}</td>
+              <td><img src="{{ user.profile_pic.url }}" alt="Profile Picture" class="rounded-circle" width="50" height="50"></td>
+              <td>{{user.email}}</td>
+              <td><strong>{{user.username}}</strong></td>
+              <td>{{user.date_joined}}</td>
+              <td>{{user.last_login}}</td>
+              <td>{{user.is_active}}</td>
+              <td>{{user.is_superuser}}</td>
+              <td>{% for group in user.groups.all %}
+                {{ group.name }}
+                  {% if not forloop.last %}, {% endif %}
+                {% endfor %}
+              </td>
+              <td> <a class="badge badge-success" href="{% url 'accounts:edit_user' user.id %}">
+                <button class="btn btn-primary">Update</button></a>
+              </td>
+              <td><a class="badge badge-danger" href="{% url 'accounts:delete_user' user.id %}">
+                <button class="btn btn-danger">Delete</button></a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>  
+  </div>
+</div>
+  <!--/ Responsive Table -->
+{% endblock content %}

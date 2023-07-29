@@ -1,0 +1,13 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+  <h2>{{ broadcast_message.subject }}</h2>
+  <p>From: {{ broadcast_message.sender }}</p>
+  <p>To: Users</p>
+  <p>Sent: {{ broadcast_message.timestamp|date:"M d, Y H:i" }}</p>
+
+  <hr>
+  <p>{{ broadcast_message.message }}</p>
+  <hr>
+
+{% endblock %}

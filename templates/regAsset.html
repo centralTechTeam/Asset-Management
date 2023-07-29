@@ -1,0 +1,297 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="container-xxl flex-grow-1 container-p-y">
+  <h4 class="fw-bold py-3 mb-4" style="text-align: center;"><span class="text-muted fw-light">Register</span> Assets</h4>
+
+  <!-- Basic Layout & Basic with Icons -->
+  <div class="row">
+    <!-- Basic with Icons -->
+    <div class="col-xxl">
+      <div class="card mb-4">
+        <div class="card-header d-flex align-items-center justify-content-between">
+          <h5 class="mb-0">Asset's Information</h5>
+        </div>
+        <div class="card-body">
+          <form id="form-id" class="forms-sample" action="" method="POST">
+
+            {% csrf_token %}
+
+            <div class="row mb-3">
+              <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Asset Name</label>
+              <div class="col-sm-10">
+                <div class="input-group input-group-merge">
+                  <span id="basic-icon-default-fullname2" class="input-group-text"
+                    ><i class="bx bx-user"></i></span>
+                    {{Assetform.Name}}
+                </div>
+              </div>
+            </div>
+
+            {% if Assetform.Name.errors %}
+            <ul class="errorlist">
+              {% for error in Assetform.Name.errors %}
+              <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+
+            <div class="row mb-3">
+              <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Asset Type</label>
+              <div class="col-sm-10">
+                <div class="input-group input-group-merge">
+                  <span id="basic-icon-default-company2" class="input-group-text"
+                    ><i class="bx bx-buildings"></i></span>
+                    {{Assetform.Type}}
+                </div>
+              </div>
+            </div>
+            {% if Assetform.Type.errors %}
+            <ul class="errorlist">
+              {% for error in Assetform.Type.errors %}
+              <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+
+            <div class="row mb-3">
+              <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Quantity</label>
+              <div class="col-sm-10">
+                <div class="input-group input-group-merge">
+                  <span id="basic-icon-default-company2" class="input-group-text"
+                    ><i class="bx bx-buildings"></i></span>
+                    {{Assetform.Quantity}}
+                </div>
+              </div>
+            </div>
+
+            {% if Assetform.Quantity.errors %}
+            <ul class="errorlist">
+              {% for error in Assetform.Quantity.errors %}
+              <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+
+            <div class="row mb-3">
+              <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Model</label>
+              <div class="col-sm-10">
+                <div class="input-group input-group-merge">
+                  <span id="basic-icon-default-company2" class="input-group-text"
+                    ><i class="bx bx-buildings"></i></span>
+                    {{Assetform.Model}}
+                </div>
+              </div>
+            </div>
+
+            {% if Assetform.Model.errors %}
+            <ul class="errorlist">
+              {% for error in Assetform.Model.errors %}
+              <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+
+            <div class="row mb-3">
+              <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Serial Number</label>
+              <div class="col-sm-10">
+                <div class="input-group input-group-merge">
+                  <span id="basic-icon-default-company2" class="input-group-text"
+                    ><i class="bx bx-buildings"></i></span>
+                    {{Assetform.Serian_Num}}
+                </div>
+              </div>
+            </div>
+
+            {% if Assetform.Serian_Num.errors %}
+            <ul class="errorlist">
+              {% for error in Assetform.Serian_Num.errors %}
+              <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+
+            <div class="row mb-3">
+              <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Asset State</label>
+              <div class="col-sm-10">
+                <div class="input-group input-group-merge">
+                  <span id="basic-icon-default-company2" class="input-group-text"
+                    ><i class="bx bx-buildings"></i></span>
+                    {{Assetform.Asset_State}}
+                </div>
+              </div>
+            </div>
+
+            {% if Assetform.Asset_State.errors %}
+            <ul class="errorlist">
+              {% for error in Assetform.Asset_State.errors %}
+              <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+
+            <div class="row mb-3">
+              <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Departments</label>
+              <div class="col-sm-10">
+                <div class="input-group input-group-merge">
+                  <span id="basic-icon-default-company2" class="input-group-text"
+                    ><i class="bx bx-buildings"></i></span>
+                    {{Assetform.Departments}}
+                </div>
+              </div>
+            </div>
+
+            {% if Assetform.Departments.errors %}
+            <ul class="errorlist">
+              {% for error in Assetform.Departments.errors %}
+              <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+
+            <div class="row mb-3">
+              <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Asset LifeSpan</label>
+              <div class="col-sm-10">
+                <div class="input-group input-group-merge">
+                  <span id="basic-icon-default-company2" class="input-group-text"
+                    ><i class="bx bx-buildings"></i></span>
+                    {{Assetform.LifeSpan}}
+                </div>
+              </div>
+            </div>
+
+            {% if Assetform.LifeSpan.errors %}
+            <ul class="errorlist">
+              {% for error in Assetform.LifeSpan.errors %}
+              <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+
+            <div class="row mb-3">
+              <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Date Acquired</label>
+              <div class="col-sm-10">
+                <div class="input-group input-group-merge">
+                  <span id="basic-icon-default-company2" class="input-group-text"
+                    ><i class="bx bx-buildings"></i></span>
+                    {{Assetform.Date_Acquired}}
+                </div>
+              </div>
+            </div>
+
+
+            {% if Assetform.Date_Acquired.errors %}
+            <ul class="errorlist">
+              {% for error in Assetform.Date_Acquired.errors %}
+              <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+
+            <div class="row mb-3">
+              <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Warantee Start Date</label>
+              <div class="col-sm-10">
+                <div class="input-group input-group-merge">
+                  <span id="basic-icon-default-company2" class="input-group-text"
+                    ><i class="bx bx-buildings"></i></span>
+                    {{Assetform.Warantee_Start_Date}}
+                </div>
+              </div>
+            </div>
+
+            {% if Assetform.Warantee_Start_Date.errors %}
+            <ul class="errorlist">
+              {% for error in Assetform.Warantee_Start_Date.errors %}
+              <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+
+            <div class="row mb-3">
+              <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Warantee End Date</label>
+              <div class="col-sm-10">
+                <div class="input-group input-group-merge">
+                  <span id="basic-icon-default-company2" class="input-group-text"
+                    ><i class="bx bx-buildings"></i></span>
+                    {{Assetform.Warantee_End_Date}}
+                </div>
+              </div>
+            </div>
+
+            {% if Assetform.Warantee_End_Date.errors %}
+            <ul class="errorlist">
+              {% for error in Assetform.Warantee_End_Date.errors %}
+              <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+
+            <div class="row mb-3">
+              <label class="col-sm-2 col-form-label" for="basic-icon-default-email">Location</label>
+              <div class="col-sm-10">
+                <div class="input-group input-group-merge">
+                  <span class="input-group-text"><i class="bx bx-envelope"></i></span>
+                  {{Assetform.Location}}
+                </div>
+              </div>
+            </div>
+
+            {% if Assetform.Location.errors %}
+            <ul class="errorlist">
+              {% for error in Assetform.Location.errors %}
+              <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+
+            <div class="row mb-3">
+              <label class="col-sm-2 form-label" for="basic-icon-default-phone">Vendor</label>
+              <div class="col-sm-10">
+                <div class="input-group input-group-merge">
+                  <span id="basic-icon-default-phone2" class="input-group-text"
+                    ><i class="bx bx-phone"></i
+                  ></span>
+                  {{Assetform.Vendor}}
+                </div>
+              </div>
+            </div>
+
+            {% if Assetform.Vendor.errors %}
+            <ul class="errorlist">
+              {% for error in Assetform.Vendor.errors %}
+              <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+
+            <div class="row mb-3">
+              <label class="col-sm-2 form-label" for="basic-icon-default-message">Description</label>
+              <div class="col-sm-10">
+                <div class="input-group input-group-merge">
+                  <span id="basic-icon-default-message2" class="input-group-text"
+                    ><i class="bx bx-comment"></i
+                  ></span>
+                  {{Assetform.Description}}
+                </div>
+              </div>
+            </div>
+            {% if Assetform.Description.errors %}
+            <ul class="errorlist">
+              {% for error in Assetform.Description.errors %}
+              <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+            <div class="row justify-content-end">
+              <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">Register</button>
+                <button class="btn btn-dark">Cancel</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Assets Dashboard{% endblock %}
+
+{% block message %}
+<script>
+  $(document).ready(function(){
+      let messages = "{{ messages }}"
+      if (messages) {
+          let message = messages[0];
+          $("#messageModal .modal-body").text(message);
+          $("#messageModal").modal('show');
+      }
+  });
+</script>
+
+{% endblock %}
+
+{% load static %}
+
+{% block content %}
+
+    <!-- partial -->
+      <div class="content-wrapper">
+        <div class="modal" id="messageModal">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title">Message</h5>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+                  <div class="modal-body"></div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+              </div>
+          </div>          
+      </div>
+      
+        <div class="row">
+          <div class="col-12 grid-margin stretch-card">
+            <div class="card corona-gradient-card">
+              <div class="card-body py-0 px-0 px-sm-3">
+                <div class="row align-items-center">
+                  <h1 class="text-md-start" class="text-center">View Assets and Vendors</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="page-header">
+
+          <h3 class="page-title"> Basic Tables </h3>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Tables</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Basic tables</li>
+            </ol>
+          </nav>
+        </div> 
+          <form method="get">
+            {{UserFilterAsset.form}}
+            <button class="btn btn-primary" type="submit">Search</button>
+          </form>
+          <br>
+          <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">              
+              <div class="card-body">
+                {% if request.user.is_staff %}
+                    <form method="get">
+                      {{myFilter.form}}
+                      <button class="btn btn-primary" type="submit">Search</button>
+                    </form>
+                {% endif %}
+                <h4 class="card-title">VIEW ASSETS</h4>
+                <p class="card-description">Assets <code> Information</code>
+                </p>
+                <div class="table-responsive">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th> Id </th>
+                        <th> Assign </th>
+                        <th> Name </th>
+                        <th> Quantity </th>
+                        <th> Model Number </th>
+                        <th> Department</th>
+                        <th> State </th>
+                        <th> Date Assign </th>
+                        <th> Location </th>
+                        <th> Description </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                       {% for asset in assets %}
+                          <tr>
+                            <td> {{asset.id}} </td>
+                            <td> {{asset.Employee}} </td>
+                            <td> {{asset.Name}} </td>
+                            <td> {{asset.Quantity}} </td>
+                            <td> {{asset.Model}} </td>
+                            <td> {{asset.Departments}} </td>
+                            <td> {{asset.Asset_State}} </td>
+                            <td> {{asset.Date_Assigned}} </td>
+                            <td>
+                               <!--<div class="LifeSpan">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                              </div>-->
+                                  {{asset.Location}}
+                            </td>
+                            <td> {{asset.Description}} </td>
+                            <td> <a class="badge badge-success" href="{% url 'asset_update' asset.id %}">Update</td>
+                            {% if request.user.is_staff %}
+                              <td> <a class="badge badge-danger" href="{% url 'deleteAsset' asset.id %}">Delete</td>
+                            {% endif %}
+                          </tr>
+                        {% endfor %}
+                    </tbody>
+                  
+                  </table>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">VENDORS ASSETS</h4>
+                <p class="card-description"> Vendors <code>Information</code>
+                </p>
+                <div class="table-responsive">
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th> Id </th>
+                        <th> Company Name </th>
+                        <th> Business Type </th>
+                        <th> Address </th>
+                        <th> Email </th>
+                        <th> Website </th>
+                        <th> Country </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                       {% for vendors in vendor %}
+                          <tr>
+                            <td> {{vendors.id}} </td>
+                            <td> {{vendors.Company_Name}} </td>
+                            <td> {{vendors.Business}} </td>
+                            <td>
+                              <!-- <div class="progress">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                              </div> -->
+                              {{vendors.Address}} 
+                            </td>
+                            <td> {{vendors.Email}}  </td>
+                            <td> {{vendors.Website}}  </td>
+                            <td> {{vendors.Country}}  </td>
+                            <td> <a class="badge badge-success" href="">Update</td>
+                              {% if request.user.is_staff %}
+                            <td> <a class="badge badge-danger" href="">Delete</td>
+                              {% endif %}
+                          </tr> 
+                        {% endfor %}
+       </div>
+      </div>
+    <!-- main-panel ends -->
+  <!-- page-body-wrapper ends -->
+{% endblock content %}

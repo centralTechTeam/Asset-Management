@@ -1,0 +1,110 @@
+/* ==========================
+# DATATABLES
+=============================*/
+/* Pagination */
+.dataTables_paginate {
+  margin-top: 10px !important;
+}
+
+/*Input Search */
+.dataTables_filter {
+  display: none !important;
+}
+
+/*Show entries */
+.dataTables_length {
+  float : right !important;
+  margin-top: 10px !important;
+}
+
+/*Group Buttons*/
+.dt-buttons {
+  margin-bottom: 5px !important;
+}
+
+.page-item.active .page-link {
+  columns: #fff !important;
+  background-color: #6c757d !important;
+  border: 1px solid #6c757d !important;
+}
+
+.pagination > li > a {
+  background-color: #fff !important;
+  color: #6c757d !important;
+}
+
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > span > a:focus,
+.pagination > span > a:hover {
+  color: #111 !important;
+  background-color: #d3d3d3 !important;
+  border: 1px solid #6c757d !important;
+  box-shadow: none !important;
+}
+/* Pagination */
+.dataTables_paginate {
+  margin-top: -30px !important;
+}
+
+.dataTable_length {
+  margin-bottom: 10px !important;
+}
+
+
+
+
+.table, .jsgrid .jsgrid-table {
+  color: #fff !important;
+}
+
+.tbody, td, tfoot, th, thead, tr {
+  border-color: white !important;
+  border-style: solid !important;
+  border-width: 0 !important;
+}
+
+tr:hover {
+  background-color: lightgreen !important;
+}
+
+div.table-responsive > div.dataTables_wrapper > div.row > div[class^="col-"]:first-child {
+  color: wheat !important;
+}
+
+div.dataTables_wrapper div.dataTables_length select {
+  color: white !important;
+}
+
+div.dataTables_wrapper div.dataTables_length label {
+  font-weight: normal !important;
+  color: black !important;
+}
+
+div.table-responsive > div.dataTables_wrapper > div.row > div[class^="col-"]:last-child {
+  color: black !important;
+}
+ 
+
+
+
+  /* For my Top Cards 
+  #top-asset {
+    background-color: #17a2b8 !important;
+  
+  }
+  
+  #top-emp {
+    background-color: #28a745 !important;
+  
+  }
+  
+  #top-vendor {
+    background-color: #ffc107 !important;
+  
+  }
+  
+  #top-dept {
+    background-color: #ffc107 !important;
+  
+  } */

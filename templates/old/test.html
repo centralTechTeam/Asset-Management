@@ -1,0 +1,18 @@
+<table>
+    <thead>
+      <tr>
+        <th> No </th>
+        <th>Country</th>
+        <th>Number of Vendors</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for Country, number in result.items %}
+            <tr>
+                <td>1</td>
+                <td>{{ Country }}</td>
+                <td class="text-right"> {{ number }} </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+  </table>

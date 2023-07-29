@@ -1,0 +1,87 @@
+{% extends 'admin/base.html' %}
+
+{% load static %}
+
+{% block searchs %}
+<div class="navbar-nav align-items-center">
+  <form action="{% url 'accounts:view_employee' %}" method="GET">
+      <div class="nav-item d-flex align-items-center">
+          <i class="bx bx-search fs-4 lh-0"></i>
+          <input
+              type="text"
+              name="e"
+              id="search-input"
+              class="form-control border-0 shadow-none"
+              placeholder="Search..."
+              aria-label="Search..."
+              value="{{ query }}"
+          />
+      </div>
+  </form>
+</div>
+{% endblock searchs %}
+
+{% block content %}
+<div class="container-xxl flex-grow-1 container-p-y">
+
+  <!-- Responsive Table -->
+  <div class="card">
+    <h2 class="fw-bold py-2 mb-2" style="text-align: center;">Employees Data</h2>
+    <div class="table-responsive text-wrap">
+      <table class="table">
+        <thead class="table-dark">
+          <tr class="text-nowrap">
+            <th class="text-white">#</th>
+            <th class="text-white"> Pic </th>
+            <th class="text-white"> Full_Name </th>
+            <th class="text-white"> User </th>
+            <th class="text-white"> Title </th>
+            <th class="text-white"> Department </th>
+            <th class="text-white">Phone</th>
+            <th class="text-white">Address </th>
+            <th class="text-white"> D.O.B </th>
+            <th class="text-white"> Marital_Status </th>
+            <th class="text-white"> Action </th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for Employee in EmployeeData %}
+            <tr>
+              <td class="py-1">{{Employee.id}}</td>
+              <td>
+                {% if Employee.profile_pic %}
+                  <img src="{{ Employee.profile_pic.url }}"
+                      alt="user-avatar"
+                      class="d-block rounded"
+                      height="100"
+                      width="100"
+                      id="uploadedAvatar" />
+                {% else %}
+                  <img src="{% static 'img/default-avatar.jpg' %}"
+                      alt="user-avatar"
+                      class="d-block rounded"
+                      height="100"
+                      width="100"
+                      id="uploadedAvatar" />
+                {% endif %}
+              </td>
+              <td><strong>{{Employee.Full_Name}}</strong></td>
+              <td>{{Employee.user}}</td>
+              <td>{{Employee.Title}}</td>
+              <td>{{Employee.Departments}}</td>
+              <td>{{Employee.Phone}}</td>
+              <td>{{Employee.Address}}</td>
+              <td>{{Employee.Date_of_Birth}}</td>
+              <td>{{Employee.Marital_Status}} </td>
+              <td>
+                <a href="{% url 'accounts:edit_employee' Employee.id %}"><button class="btn btn-primary">View</button></a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>  
+  </div>
+</div>
+  <!--/ Responsive Table -->
+{% endblock content %}

@@ -1,0 +1,200 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Assets Dashboard{% endblock %}
+
+{% load static %}
+
+
+{% block content %}
+     <div class="container-scroller">
+          <div class="content-wrapper">
+            {% if messages %}
+                <div class="alert alert-success messages">
+                    {% for message in messages %}
+                        <p {% if message.tags %} class="{{ message.tags }}"{% endif %}><strong>{{ message }}</strong></p>
+                    {% endfor %}
+                </div>
+            {% endif %} 
+            <div class="row">
+              <div class="col-12 grid-margin stretch-card">
+                <div class="card corona-gradient-card">
+                  <div class="card-body py-0 px-0 px-sm-3">
+                    <div class="row align-items-center">
+                      <h1 class="text-md-start" class="text-center">Register Assets and Vendors</h1>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="page-header">
+              <h3 class="page-title"> </h3>
+              <nav aria-label="breadcrumb">
+                
+              </nav>
+            </div>
+              <div class="row">
+                  <div class="col-md-6 grid-margin stretch-card">
+                    <div class="card">
+                      <div class="card-body">
+                        <h4 class="card-title" style="text-align:center;">REGISTER ASSETS</h4>
+                        <p class="card-description" style="text-align:center;"> Register a new Asset </p>
+
+                        <form id="form-id" class="forms-sample" action="" method="POST">
+
+                          {% csrf_token %}
+
+                          <!---->
+                          <div class="form-group">
+                            <label >Asset Name</label>
+                            {{Assetform.Name}}
+                          </div>
+                          <div class="form-group">
+                            <label >Asset Type</label>
+                            {{Assetform.Type}}
+                          </div>
+                          <div class="form-group">
+                            <label >Quantity</label>
+                            {{Assetform.Quantity}}
+                          </div>
+                          <div class="form-group">
+                            <label >Model</label>
+                            {{Assetform.Model}}
+                          </div>
+                          <div class="form-group">
+                            <label  >Serial Number</label>
+                            {{Assetform.Serian_Num}}
+                          </div>
+                          <div class="form-group">
+                            <label  >Asset State</label>
+                            {{Assetform.Asset_State}}
+                          </div>
+                          <div class="form-group">
+                            <label  >Departments</label>
+                            {{Assetform.Departments}}
+                          </div>
+                          <div class="form-group">
+                            <label  >Asset LifeSpan</label>
+                            {{Assetform.LifeSpan}}
+                          </div>
+                          <div class="form-group">
+                            <label>Date Acquired</label>
+                            {{Assetform.Date_Acquired}}
+                          </div>
+                          <div class="form-group">
+                            <label >Warantee Start Date</label>
+                            {{Assetform.Warantee_Start_Date}}
+                          </div>
+                          <div class="form-group">
+                            <label  >Warantee End Date</label>
+                            {{Assetform.Warantee_End_Date}}
+                          </div>
+
+                          <!--
+                          <div class="form-group">
+                            <label  >Assign</label>
+                            {{Assetform.Employee}}
+                          </div>
+                          
+                          <div class="form-group">
+                            <label >Date Assigned</label>
+                            {{Assetform.Date_Assigned}}
+                          </div>
+                        -->
+                          <div class="form-group">
+                            <label  >Location</label>
+                            {{Assetform.Location}}
+                          </div>
+                          <div class="form-group">
+                            <label >Vendor</label>
+                            {{Assetform.Vendor}}
+                          </div>
+                          <div class="form-group">
+                            <label  >Description</label>
+                            {{Assetform.Description}}
+                          </div>
+                          <button type="submit" class="btn btn-primary mr-2" style="color:black">Submit</button>
+                          <button class="btn btn-dark">Cancel</button>
+                        </form>
+                        </div>
+                        <div class="alert alert-danger" role="alert">
+                          {% if Assetform.errors %}
+                            {% for error in Assetform.errors %}
+                              <li class="error">{{ error }}</li>
+                            {% endfor %}  
+                         {% endif %}
+                        </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 grid-margin stretch-card">
+                    <div class="card">
+                      <div class="card-body">
+                        <h4 class="card-title" style="text-align:center;">REGISTER VENDOR</h4>
+                        <p class="card-description" style="text-align:center;"> Register a Vendor </p>
+
+                        <form id="form-id" class="forms-sample" action="" method="POST">
+
+                          {% csrf_token %}
+
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Company Name</label>
+                            <div class="col-sm-9">
+                              {{Vendorform.Company_Name}}
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Name</label>
+                            <div class="col-sm-9">
+                              {{Vendorform.Name}}
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Business</label>
+                            <div class="col-sm-9">
+                              {{Vendorform.Business}}
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Address</label>
+                            <div class="col-sm-9">
+                              {{Vendorform.Address}}
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">City</label>
+                            <div class="col-sm-9">
+                              {{Vendorform.City}}
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Phone</label>
+                            <div class="col-sm-9">
+                              {{Vendorform.Phone}}
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Email</label>
+                            <div class="col-sm-9">
+                              {{Vendorform.Email}}
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Website</label>
+                            <div class="col-sm-9">
+                              {{Vendorform.Website}}
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Country</label>
+                            <div class="col-sm-9">
+                              {{Vendorform.Country}}
+                            </div>
+                          </div>
+                          <button type="submit" class="btn btn-primary mr-2" style="color:black">Submit</button>
+                          <button class="btn btn-dark">Cancel</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div> 
+              </div>
+{% endblock content %}

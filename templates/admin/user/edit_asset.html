@@ -1,0 +1,117 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+<div class="container-xxl flex-grow-1 container-p-y">
+  <h4 class="fw-bold py-1 " style="text-align: center;"><span class="text-muted fw-light">Edit/Delete</span> Asset</h4>
+
+  <div class="row">
+    <div class="col-xxl">
+      <div class="card mb-4">
+        
+        <div class="card-body">
+          {% if error_message %}
+          <div class="alert alert-danger">{{ error_message }}</div>
+          {% endif %}
+          
+          <form method="post">
+            {% csrf_token %}
+            
+            {% if asset %}
+              <input type="hidden" name="asset_id" value="{{ assets.id }}">
+            {% endif %}
+           
+            <div class="form-Employee">
+              <label for="Name">Name:</label>
+              <input type="text" class="form-control" id="Name" name="Name" {% if asset %}value="{{ asset.Name }}"{% endif %} required><br>
+
+              <label for="type">Type:</label>
+              {% if asset.type %}
+                  <p>{{ asset.type }}</p>
+              {% endif %}
+              <select class="form-control" id="type" name="type" required>
+                  <option value="">-- Select Asset Type --</option>
+                  {% for asset_type in AssetType %}
+                      <option value="{{ asset_type.id }}" {% if asset.type == asset_type %}selected{% endif %}>{{ asset_type.type }}</option>
+                  {% endfor %}
+              </select><br>
+
+              <label for="Quantity">Quantity:</label>
+              <input type="number" class="form-control" id="Quantity" name="Quantity" {% if asset %}value="{{ asset.Quantity }}"{% endif %} required><br>
+
+              <label for="Model">Model:</label>
+              <input type="text" class="form-control" id="Model" name="Model" {% if asset %}value="{{ asset.Model }}"{% endif %} required><br>
+
+              <label for="Serian_Num">Serial Num:</label>
+              <input type="text" class="form-control" id="Serian_Num" name="Serian_Num" {% if asset %}value="{{ asset.Serian_Num }}"{% endif %} required><br>
+
+              <label for="state">Asset State:</label>
+                <select name="Marital_Status" class="form-control">
+                  <option value="New">New</option>
+                  <option value="Good">Good</option>
+                  <option value="Used">Used</option>
+                  <option value="Defective">Defective</option>
+                </select> <br/>
+
+              <label for="Departments">Departments:</label>
+              <input type="text" class="form-control" id="Departments" name="Departments" {% if asset %}value="{{ asset.Departments }}"{% endif %} required><br>
+
+              <label for="LifeSpan">LifeSpan:</label>
+              <input type="text" class="form-control" id="LifeSpan" name="LifeSpan" {% if asset %}value="{{ asset.LifeSpan }}"{% endif %} ><br>
+              
+              <label for="Date_Acquired">Date_Acquired:</label>
+                {% if Date_Acquired %}
+                    <p>{{ Date_Acquired }}</p>
+                {% endif %}
+
+              <label for="Warantee_Start_Date">Warantee_Start_Date:</label>
+                {% if Warantee_Start_Date %}
+                    <p>{{ Warantee_Start_Date }}</p>
+                {% endif %}
+
+                <label for="Warantee_End_Date">Warantee_End_Date:</label>
+                {% if Warantee_End_Date %}
+                    <p>{{ Warantee_End_Date }}</p>
+                {% endif %}
+              
+                <label for="employee">Employee:</label>
+                {% if asset.employee %}
+                    <p>{{ asset.employee }}</p>
+                {% endif %}
+                <select class="form-control" id="employee" name="employee" required>
+                    <option value="">-- Select Employee --</option>
+                    {% for emp in EmployeeData %}
+                        <option value="{{ emp.id }}" {% if asset.employee == emp %}selected{% endif %}>{{ emp.Full_Name }}</option>
+                    {% endfor %}
+                </select><br>
+                
+
+              <label for="Date_Assigned">Date_Assigned:</label>
+                {% if Date_Acquired %}
+                    <p>{{ Date_Acquired }}</p>
+                {% endif %}
+              <label for="Location">Location:</label>
+              <input type="text" class="form-control" id="Location" name="Location" {% if asset %}value="{{ asset.Location }}"{% endif %} required><br>
+              <label for="Vendor">Vendor:</label>
+              <input type="text" class="form-control" id="Vendor" name="Vendor" {% if asset %}value="{{ asset.Vendor }}"{% endif %} required><br>
+              <label for="Description">Description:</label>
+              <input type="text" class="form-control" id="Description" name="Description" {% if asset %}value="{{ asset.Description }}"{% endif %} required><br>
+              
+            </div><br/><br/>
+            <button type="submit" class="btn btn-primary">{% if asset %}Update{% else %}Create{% endif %} Asset</button>
+          </form>
+          
+          {% if asset %}
+          <hr>
+          <form method="post" action="{% url 'accounts:delete_asset' asset.id %}" onsubmit="return confirm('Are you sure you want to delete this asset? This action cannot be undone.');">
+            {% csrf_token %}
+            <input type="hidden" name="asset_id" value="{{ asset.id }}">
+            <button type="submit" class="btn btn-danger">Delete asset</button>
+          </form>
+          {% endif %}
+        
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

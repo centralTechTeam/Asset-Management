@@ -1,0 +1,56 @@
+{% extends 'index.html' %}
+
+{% block title %}Assets Dashboard{% endblock %}
+
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'assets/css/reportstyle.css' %}">
+{% endblock %}
+
+{% block nav %} 
+        <ul class="input-group input-group-sm">
+            <div class="nav-item w-100">
+            <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
+                <input type="search" id="search" class="form-control" placeholder="Live Search" aria-label="Search"> <!--Search-->
+                <a href="{% url 'employee-report' %}" class="btn btn-secondary btn-sm"><i class="fas fa-sync-alt"></i></a>
+            </form>
+        </div>
+        </ul>
+{% endblock %} 
+
+{% block content %}
+<div class="table-responsive">
+    <table class="table table-bordered table-hover" id="example" style="text-align: center;">
+        <thead class="thead-dark">
+            <tr>
+                <th>Id</th>
+                <th>Full Name</th>
+                <th>User</th>
+                <th>Title</th>
+                <th>Departments</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Date of Birth</th>
+                <th>Marital Status</th>
+            </tr>
+        </thead>
+        
+        {% for employee in employee_list %}
+        <tr>
+            <td>{{ employee.id }}</td>
+            <td>{{ employee.Full_Name }}</td>
+            <td>{{ employee.user }}</td>
+            <td>{{ employee.Title }}</td>
+            <td>{{ employee.Departments }}</td>
+            <td>{{ employee.Phone }}</td>
+            <td>{{ employee.Address }}</td>
+            <td>{{ employee.Date_of_Birth }}</td>
+            <td>{{ employee.Marital_Status }}</td>
+
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}

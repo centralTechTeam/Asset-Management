@@ -1,0 +1,71 @@
+{% extends 'admin/base.html' %}
+
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'assets/css/reportstyle.css' %}">
+{% endblock %}
+
+{% block nav %} 
+        <ul class="input-group input-group-sm">
+            <div class="nav-item w-100">
+            <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
+                <input type="search" id="search" class="form-control" placeholder="Live Search" aria-label="Search"> <!--Search-->
+                <a href="{% url 'asset-report' %}" class="btn btn-secondary btn-sm"><i class="fas fa-sync-alt"></i></a>
+            </form>
+        </div>
+        </ul>
+{% endblock %} 
+
+{% block content %}
+<div class="table-responsive">
+    <table class="table table-bordered table-hover" id="example" style="text-align: center;">
+        <thead class="thead-dark">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Quantity</th>
+                <th>Model</th>
+                <th>Serial_Num</th>
+                <th>State</th>
+                <th>Dept</th>
+                <th>Life Span</th>
+                <th>Date Acquired</th>
+                <th>Warantee Start</th>
+                <th>Warantee End</th>
+                <th>Employee</th>
+                <th>Date_Assigned</th>
+                <th>Location</th>
+                <th>Vendor</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        
+        {% for asset in asset_list %}
+        <tr>
+            <td>{{ asset.id }}</td>
+            <td>{{ asset.Name }}</td>
+            <td>{{ asset.Type }}</td>
+            <td>{{ asset.Quantity }}</td>
+            <td>{{ asset.Model }}</td>
+            <td>{{ asset.Serian_Num }}</td>
+            <td>{{ asset.Asset_State }}</td>
+            <td>{{ asset.Departments }}</td>
+            <td>{{ asset.LifeSpan }}</td>
+            <td>{{ asset.Date_Acquired }}</td>
+            <td>{{ asset.Warantee_Start_Date }}</td>
+            <td>{{ asset.Warantee_End_Date }}</td>
+            <td>{{ asset.Employee }}</td>
+            <td>{{ asset.Date_Assigned }}</td>
+            <td>{{ asset.Location }}</td>
+            <td>{{ asset.Vendor }}</td>
+            <td>{{ asset.Description }}</td>
+
+
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}

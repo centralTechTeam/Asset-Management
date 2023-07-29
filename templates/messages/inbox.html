@@ -1,0 +1,70 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+
+  <div class="container-xxl flex-grow-1 container-p-y">
+    {% if messages %}
+        <div class="alert alert-success messages">
+          {% for message in messages %}
+            <p {% if message.tags %} class="{{ message.tags }}"{% endif %}><strong>{{ message }}</strong></p>
+          {% endfor %}
+        </div>
+    {% endif %}
+
+    <h3 class="fw-bold py-3 mb-4" style="text-align: center;"> INBOX</h3>
+  
+      <!-- Responsive Table -->
+      <div class="card">
+        <div class="table-responsive text-nowrap">
+          <table class="table">
+            <thead class="table-dark">
+              <tr class="text-nowrap">
+                <th class="text-white">#</th>
+                <th class="text-white"> From </th>
+                <th class="text-white"> Subject </th>
+                <th class="text-white"> Received </th>
+                <th class="text-white"> Status </th>
+              </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+              {% for message in messages_received %}
+                <tr>
+                  <tr{% if not message.read_at %} class="font-weight-bold"{% endif %}>
+                      <td class="py-1">{{ forloop.counter }}</td>
+                      <td>{{ message.sender }}</td>
+                      <td><a href="{% url 'message_detail' message.id %}">{{ message.subject }}</a></td>
+                      <td>{{ message.sent_at|date:"M d, Y H:i" }}</td>
+                      <td>{% if message.read_at %}Read{% else %}Unread{% endif %}</td>
+                    </tr>
+                  {% empty %}
+                    <tr><td colspan="4">No received messages.</td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <!--
+        <nav>
+          <ul class="pagination">
+            {% if vendor.has_previous %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ vendor.previous_page_number }}">Previous</a>
+            </li>
+            {% endif %}
+            {% for i in vendor.paginator.page_range %}
+            <li class="page-item {% if vendor.number == i %}active{% endif %}">
+              <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+            </li>
+            {% endfor %}
+            {% if vendor.has_next %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ vendor.next_page_number }}">Next</a>
+            </li>
+            {% endif %}
+          </ul>
+        </nav> -->
+      </div>
+  </div>
+    <!--/ Responsive Table -->
+  </div>
+{% endblock %}

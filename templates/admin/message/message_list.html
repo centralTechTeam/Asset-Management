@@ -1,0 +1,28 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+  <h2>Received Messages</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>From</th>
+        <th>Subject</th>
+        <th>Received</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for message in messages_received %}
+        <tr{% if not message.read_at %} class="font-weight-bold"{% endif %}>
+          <td>{{ message.sender }}</td>
+          <td><a href="{% url 'accounts:user_message_detail' message.id %}">{{ message.subject }}</a></td>
+          <td>{{ message.sent_at|date:"M d, Y H:i" }}</td>
+          <td>{% if message.read_at %}Read{% else %}Unread{% endif %}</td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="4">No received messages.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="{% url 'accounts:compose_message' %}" class="btn btn-primary">Compose</a>
+{% endblock %}

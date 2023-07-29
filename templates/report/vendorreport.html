@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}Assets Dashboard{% endblock %}
+
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'assets/css/reportstyle.css' %}">
+{% endblock %}
+
+{% block nav %} 
+        <ul class="input-group input-group-sm">
+            <div class="nav-item w-100">
+            <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
+                <input type="search" id="search" class="form-control" placeholder="Live Search" aria-label="Search"> <!--Search-->
+                <a href="{% url 'vendor-report' %}" class="btn btn-secondary btn-sm"><i class="fas fa-sync-alt"></i></a>
+            </form>
+        </div>
+        </ul>
+{% endblock %} 
+
+{% block content %}
+<div class="table-responsive">
+    <table class="table table-bordered table-hover" id="example" style="text-align: center;">
+        <thead class="thead-dark">
+            <tr>
+                <th>Id</th>
+                <th>Company Name</th>
+                <th>Name</th>
+                <th>Business</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Website</th>
+                <th>Country</th>
+            </tr>
+        </thead>
+        
+        {% for vendor in vendor_list %}
+        <tr>
+            <td>{{ vendor.id }}</td>
+            <td>{{ vendor.Company_Name }}</td>
+            <td>{{ vendor.Name }}</td>
+            <td>{{ vendor.Business }}</td>
+            <td>{{ vendor.Address }}</td>
+            <td>{{ vendor.City }}</td>
+            <td>{{ vendor.Phone }}</td>
+            <td>{{ vendor.Email }}</td>
+            <td>{{ vendor.Website }}</td>
+            <td>{{ vendor.Country }}</td>
+
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}

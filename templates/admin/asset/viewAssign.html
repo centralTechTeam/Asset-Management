@@ -1,0 +1,61 @@
+{% extends 'admin/base.html' %}
+
+
+{% block searchs %}
+<div class="navbar-nav align-items-center">
+  <form action="{% url 'accounts:view_assign' %}" method="GET">
+      <div class="nav-item d-flex align-items-center">
+          <i class="bx bx-search fs-4 lh-0"></i>
+          <input
+              type="text"
+              name="e"
+              id="search-input"
+              class="form-control border-0 shadow-none"
+              placeholder="Search..."
+              aria-label="Search..."
+              value="{{ query }}"
+          />
+      </div>
+  </form>
+</div>
+{% endblock searchs %}
+
+{% block content %}
+<div class="container-xxl flex-grow-1 container-p-y">
+  <div class="alert alert-success messages">
+    {% for message in messages %}
+        <p {% if message.tags %} class="{{ message.tags }}"{% endif %}><strong>{{ message }}</strong></p>
+    {% endfor %}
+  </div>
+
+  <h4 class="fw-bold py-3 mb-4" style="text-align: center;"> Assign Groups</h4>
+
+  <!-- Responsive Table -->
+  <div class="card">
+    <div class="table-responsive text-nowrap">
+      <table class="table">
+        <thead class="table-dark">
+          <tr class="text-nowrap">
+            <th class="text-white">#</th>
+            <th class="text-white"> Assign Name </th>
+            <th class="text-white"> Action </th>
+          </tr>
+        </thead>
+        <tbody class="table-border-bottom-0">
+          {% for assign in AssignG %}
+            <tr>
+              <td class="py-1">{{Assign.id}}</td>
+              <td><strong>{{assign.Name}}</strong></td>
+              <td>
+                <a href="{% url 'accounts:edit_assign' assign.id %}"><button class="btn btn-primary">View</button></a>
+              </td>
+              </tr>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+  <!--/ Responsive Table -->
+{% endblock content %}

@@ -1,0 +1,74 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+{% block extra_css %}
+    
+    <link rel="stylesheet" href="{% static 'user/assets/css/reportstyle.css' %}">
+    <!-- Bootstrap Css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+  
+{% endblock %}
+
+        
+
+{% block search %}
+<!-- Search -->
+        <div class="navbar-nav align-items-center">
+        <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
+            <div class="nav-item d-flex align-items-center">
+            <i class="bx bx-search fs-4 lh-0"></i>
+            <input
+                type="search" 
+                id="search" 
+                class="form-control border-0 shadow-none" 
+                placeholder="Live Search" 
+                aria-label="Search"
+            />
+            </div>
+            <a href="{% url 'vendor-report' %}" class="btn btn-secondary btn-sm ms-3"><i class="fas fa-sync-alt"></i></a>
+
+        </form>
+        </div>
+<!-- /Search -->
+{% endblock search %}
+
+{% block content %}
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <h4 class="fw-bold py-3 mb-4" style="text-align: center;"> Vendors Report</h4>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover" id="example" style="text-align: center;">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Id</th>
+                        <th>Company Name</th>
+                        <th>Name</th>
+                        <th>Business</th>
+                        <th>Address</th>
+                        <th>City</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Website</th>
+                        <th>Country</th>
+                    </tr>
+                </thead>
+                
+                {% for vendor in vendor_list %}
+                <tr>
+                    <td>{{ vendor.id }}</td>
+                    <td>{{ vendor.Company_Name }}</td>
+                    <td>{{ vendor.Name }}</td>
+                    <td>{{ vendor.Business }}</td>
+                    <td>{{ vendor.Address }}</td>
+                    <td>{{ vendor.City }}</td>
+                    <td>{{ vendor.Phone }}</td>
+                    <td>{{ vendor.Email }}</td>
+                    <td>{{ vendor.Website }}</td>
+                    <td>{{ vendor.Country }}</td>
+        
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}

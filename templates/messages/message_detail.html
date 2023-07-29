@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+
+{% block content %}
+  <h2>{{ message.subject }}</h2>
+  <p>From: {{ message.sender }}</p>
+  <p>To: {{ message.receiver }}</p>
+  <p>Sent: {{ message.sent_at|date:"M d, Y H:i" }}</p>
+  {% if message.read_at %}
+    <p>Read: {{ message.read_at|date:"M d, Y H:i" }}</p>
+  {% endif %}
+  <hr>
+  <p>{{ message.body }}</p>
+  <hr>
+    {% if message.receiver == request.user %}
+        <a href="{% url 'message_reply' message.id %}" class="btn btn-primary">Reply</a>
+    {% endif %}
+  {% endblock %}

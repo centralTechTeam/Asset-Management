@@ -1,0 +1,107 @@
+{% extends 'admin/base.html' %}
+
+
+{% block searchs %}
+<div class="navbar-nav align-items-center">
+  <form action="{% url 'accounts:view_vendors' %}" method="GET">
+      <div class="nav-item d-flex align-items-center">
+          <i class="bx bx-search fs-4 lh-0"></i>
+          <input
+              type="text"
+              name="q"
+              id="search-input"
+              class="form-control border-0 shadow-none"
+              placeholder="Search..."
+              aria-label="Search..."
+              value="{{ query }}"
+          />
+      </div>
+  </form>
+</div>
+{% endblock searchs %}
+
+{% block content %}
+
+
+
+
+<div class="container-xxl flex-grow-1 container-p-y">
+  <div class="navbar-nav align-items-center">
+    <form action="{% url 'accounts:view_vendors' %}" method="GET">
+        <div class="nav-item d-flex align-items-center">
+            <i class="bx bx-search fs-4 lh-0"></i>
+            <input
+                type="text"
+                name="q"
+                id="search-input"
+                class="form-control border-0 shadow-none"
+                placeholder="Search..."
+                aria-label="Search..."
+                value="{{ query }}"
+            />
+        </div>
+    </form>
+</div>
+
+  <!-- Responsive Table -->
+  <div class="card">
+    <h2 class="fw-bold py-3 mb-4" style="text-align: center;">Vendors Data</h2>
+    <div class="table-responsive text-nowrap">
+      <table class="table">
+        <thead class="table-dark">
+          <tr class="text-nowrap">
+            <th class="text-white">#</th>
+            <th class="text-white"> Company Name </th>
+            <th class="text-white"> Business Type </th>
+            <th class="text-white"> Business Address </th>
+            <th class="text-white"> Business Email </th>
+            <th class="text-white"> Website</th>
+            <th class="text-white"> Country </th>
+            <th class="text-white"> Action</th>
+
+          </tr>
+        </thead>
+        <tbody class="table-border-bottom-0">
+          {% for vendors in vendor %}
+            <tr>
+              <td class="py-1">{{vendors.id}}</td>
+              <td><strong>{{vendors.Company_Name}}</strong></td>
+              <td>{{vendors.Business}}</td>
+              <td>{{vendors.Address}} </td>
+              <td>{{vendors.Email}} </td>
+              <td>{{vendors.Website}}</td>
+              <td>{{vendors.Country}}</td>
+              <td> <a class="badge badge-success" href="#">
+                <button class="btn btn-primary">Update</button></a>
+              </td>
+              <td><a class="badge badge-danger" href="#">
+                <button class="btn btn-danger">Delete</button></a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <nav>
+      <ul class="pagination">
+        {% if vendor.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ vendor.previous_page_number }}">Previous</a>
+        </li>
+        {% endif %}
+        {% for i in vendor.paginator.page_range %}
+        <li class="page-item {% if vendor.number == i %}active{% endif %}">
+          <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+        </li>
+        {% endfor %}
+        {% if vendor.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ vendor.next_page_number }}">Next</a>
+        </li>
+        {% endif %}
+      </ul>
+    </nav>
+  </div>
+</div>
+  <!--/ Responsive Table -->
+{% endblock content %}

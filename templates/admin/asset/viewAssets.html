@@ -1,0 +1,113 @@
+{% extends 'admin/base.html' %}
+
+
+{% block searchs %}
+<div class="navbar-nav align-items-center">
+  <form action="{% url 'accounts:view_assets' %}" method="GET">
+      <div class="nav-item d-flex align-items-center">
+          <i class="bx bx-search fs-4 lh-0"></i>
+          <input
+              type="text"
+              name="q"
+              id="search-input"
+              class="form-control border-0 shadow-none"
+              placeholder="Search..."
+              aria-label="Search..."
+              value="{{ query }}"
+          />
+      </div>
+  </form>
+</div>
+{% endblock searchs %}
+
+{% block content %}
+<div class="container-xxl flex-grow-1 container-p-y">
+  
+  <div class="alert alert-success messages">
+    {% for message in messages %}
+        <p {% if message.tags %} class="{{ message.tags }}"{% endif %}><strong>{{ message }}</strong></p>
+    {% endfor %}
+  </div>
+  <!-- Responsive Table -->
+  <div class="card">
+    <h2 class="fw-bold py-3 mb-4" style="text-align: center;">Assets Data</h2>
+    <div class="table-responsive text-nowrap">
+      <table class="table">
+        <thead class="table-dark">
+          <tr class="text-nowrap">
+            <th class="text-white">#</th>
+            <th class="text-white"> Name </th>
+            <th class="text-white"> Type </th>
+            <th class="text-white"> Quantity </th>
+            <th class="text-white"> Model # </th>
+            <th class="text-white"> Serial # </th>
+            <th class="text-white"> State </th>
+            <th class="text-white"> Department</th>
+            <th class="text-white"> LifeSpan </th>
+            <th class="text-white"> Date Acquired </th>
+            <th class="text-white"> Warantee Start </th>
+            <th class="text-white"> Warantee End </th>
+            <th class="text-white"> Assign </th>
+            <th class="text-white"> Date Assign </th>
+            <th class="text-white"> Location </th>
+            <th class="text-white"> Vendor</th>
+            <th class="text-white"> Description </th>
+            <th class="text-white"> Update</th>
+            <th class="text-white"> Del</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          {% for assets in asset %}
+            <tr>
+              <td class="py-1">{{assets.id}}</td>
+              <td>{{assets.Name}}</td>
+              <td>{{assets.Type}}</td>
+              <td>{{assets.Quantity}}</td>
+              <td>{{assets.Model}}</td>
+              <td>{{assets.Serian_Num}}</td>
+              <td>{{assets.Asset_State}}</td>
+              <td>{{assets.Departments}}</td>
+              <td>{{assets.LifeSpan}}</td>
+              <td>{{assets.Date_Acquired}}</td>
+              <td>{{assets.Warantee_Start_Date}}</td>
+              <td>{{assets.Warantee_End_Date}}</td>
+              <td><strong>{{assets.Employee}}</strong></td>
+              <td>{{assets.Date_Assigned}}</td>
+              <td>{{assets.Location}}</td>
+              <td>{{assets.Vendor}}</td>
+              <td>{{assets.Description}} </td>
+              <td>
+                <a class="badge badge-success" href="{% url 'accounts:asset_update' assets.id %}"><button class="btn btn-primary">Update</button></a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div class="mt-4" >
+      <nav>
+        <ul class="pagination">
+          {% if asset.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ asset.previous_page_number }}">Previous</a>
+          </li>
+          {% endif %}
+          {% for i in asset.paginator.page_range %}
+          <li class="page-item {% if asset.number == i %}active{% endif %}">
+            <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+          </li>
+          {% endfor %}
+          {% if asset.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ asset.next_page_number }}">Next</a>
+          </li>
+          {% endif %}
+        </ul>
+      </nav>
+    </div>
+    
+  </div>
+</div>
+  <!--/ Responsive Table -->
+{% endblock content %}

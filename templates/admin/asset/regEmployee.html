@@ -1,0 +1,209 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+<div class="container-xxl flex-grow-1 container-p-y">
+    {% if messages %}
+      <div class="alert alert-success messages">
+        {% for message in messages %}
+          <p {% if message.tags %} class="{{ message.tags }}"{% endif %}><strong>{{ message }}</strong></p>
+        {% endfor %}
+      </div>
+    {% endif %}
+  <!-- Basic Layout & Basic with Icons -->
+  <div class="row">
+    <!-- Basic with Icons -->
+    <div class="col-xxl">
+      <div class="card mb-4">
+        <div class="card-header d-flex align-items-center justify-content-between">
+          <h2 class="fw-bold py-3 mb-4" style="text-align: center;">Employee's Information</h2>
+        </div>
+        <div class="card-body">
+          <form id="form-id" class="forms-sample" action="" method="POST">
+
+            {% csrf_token %}
+
+            <div class="row mb-3">
+              <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Full_Name</label>
+              <div class="col-sm-10">
+                <div class="input-group input-group-merge">
+                  <span id="basic-icon-default-fullname2" class="input-group-text"
+                    ><i class="bx bx-user"></i></span>
+                    {{Employeeform.Full_Name}}
+                </div>
+              </div>
+            </div>
+
+            {% if Employeeform.Full_Name.errors %}
+            <ul class="errorlist">
+              {% for error in Employeeform.Full_Name.errors %}
+              <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+
+            <div class="row mb-3">
+              <label class="col-sm-2 col-form-label" for="basic-icon-default-company">User</label>
+              <div class="col-sm-10">
+                <div class="input-group input-group-merge">
+                  <span id="basic-icon-default-company2" class="input-group-text"
+                    ><i class="bx bx-buildings"></i></span>
+                    {{Employeeform.user}}
+                </div>
+              </div>
+            </div>
+
+            {% if Employeeform.user.errors %}
+            <ul class="errorlist">
+              {% for error in Employeeform.user.errors %}
+              <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+
+            <div class="row mb-3">
+              <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Title</label>
+              <div class="col-sm-10">
+                <div class="input-group input-group-merge">
+                  <span id="basic-icon-default-company2" class="input-group-text"
+                    ><i class="bx bx-buildings"></i></span>
+                    {{Employeeform.Title}}
+                </div>
+              </div>
+            </div>
+
+            {% if Employeeform.Title.errors %}
+            <ul class="errorlist">
+              {% for error in Employeeform.Title.errors %}
+              <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+
+            <div class="row mb-3">
+              <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Department</label>
+              <div class="col-sm-10">
+                <div class="input-group input-group-merge">
+                  <span id="basic-icon-default-company2" class="input-group-text"
+                    ><i class="bx bx-buildings"></i></span>
+                    {{Employeeform.Departments}}
+                </div>
+              </div>
+            </div>
+
+            {% if Employeeform.Departments.errors %}
+            <ul class="errorlist">
+              {% for error in Employeeform.Departments.errors %}
+              <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+
+            <div class="row mb-3">
+              <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Phone</label>
+              <div class="col-sm-10">
+                <div class="input-group input-group-merge">
+                  <span id="basic-icon-default-company2" class="input-group-text"
+                    ><i class="bx bx-buildings"></i></span>
+                    {{Employeeform.Phone}}
+                </div>
+              </div>
+            </div>
+
+            {% if Employeeform.Phone.errors %}
+            <ul class="errorlist">
+              {% for error in Employeeform.Phone.errors %}
+              <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+
+            <div class="row mb-3">
+              <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Address</label>
+              <div class="col-sm-10">
+                <div class="input-group input-group-merge">
+                  <span id="basic-icon-default-company2" class="input-group-text"
+                    ><i class="bx bx-buildings"></i></span>
+                    {{Employeeform.Address}}
+                </div>
+              </div>
+            </div>
+
+            {% if Employeeform.Address.errors %}
+            <ul class="errorlist">
+              {% for error in Employeeform.Address.errors %}
+              <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+
+            <div class="row mb-3">
+              <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Profile Picture</label>
+              <div class="col-sm-10">
+                <div class="input-group input-group-merge">
+                  <span id="basic-icon-default-company2" class="input-group-text"
+                    ><i class="bx bx-buildings"></i></span>
+                    {{Employeeform.profile_pic}}
+                </div>
+              </div>
+            </div>
+
+            {% if Employeeform.profile_pic.errors %}
+            <ul class="errorlist">
+              {% for error in Employeeform.profile_pic.errors %}
+              <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+
+            <div class="row mb-3">
+              <label class="col-sm-2 col-form-label" for="basic-icon-default-company">D.O.B</label>
+              <div class="col-sm-10">
+                <div class="input-group input-group-merge">
+                  <span id="basic-icon-default-company2" class="input-group-text"
+                    ><i class="bx bx-buildings"></i></span>
+                    {{Employeeform.Date_of_Birth}}
+                </div>
+              </div>
+            </div>
+
+            {% if Employeeform.Date_of_Birth.errors %}
+            <ul class="errorlist">
+              {% for error in Employeeform.Date_of_Birth.errors %}
+              <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+
+            <div class="row mb-3">
+              <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Marital Status</label>
+              <div class="col-sm-10">
+                <div class="input-group input-group-merge">
+                  <span id="basic-icon-default-company2" class="input-group-text"
+                    ><i class="bx bx-buildings"></i></span>
+                    {{Employeeform.Marital_Status}}
+                </div>
+              </div>
+            </div>
+
+
+            {% if Employeeform.Marital_Status.errors %}
+            <ul class="errorlist">
+              {% for error in Employeeform.Marital_Status.errors %}
+              <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+
+            <div class="row justify-content-end">
+              <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">Register</button>
+                <button class="btn btn-dark">Cancel</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
